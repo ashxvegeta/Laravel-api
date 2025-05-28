@@ -40,4 +40,7 @@ Route::middleware('auth:sanctum')->post('/logout',function (Request $request) {
          'message'=>'Logout Successfull'
    ]);
 });
+Route::middleware('throttle:5,1')->get('/test-throttle',function(){
+    return response()->json(['message'=>'Success']);
+});
 
