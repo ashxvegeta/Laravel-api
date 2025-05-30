@@ -18,8 +18,9 @@ use Illuminate\Http\Request;
 */
 
 
-
+// for repository show users
 Route::get('/users', [UserController::class, 'index']);
+// for repository to store users
 Route::post('/users', [UserController::class, 'store']);
 Route::put('/users/{id}', [UserController::class, 'update']);
 Route::delete('/users/{id}', [UserController::class, 'destroy']);
@@ -39,6 +40,9 @@ Route::middleware('auth:sanctum')->post('/logout',function (Request $request) {
         'status'=>true,
          'message'=>'Logout Successfull'
    ]);
+});
+Route::middleware('throttle:5,1')->get('/test-throttle',function(){
+    return response()->json(['message'=>'Success']);
 });
 Route::middleware('throttle:5,1')->get('/test-throttle',function(){
     return response()->json(['message'=>'Success']);
